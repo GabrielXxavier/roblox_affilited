@@ -1,14 +1,13 @@
-import ProfileModels from './models/profile.ts';
+import ClientModels from './models/client.js';
+import AffiliatedModels from './models/affiliated.js'
 
 
 class Context {
     
     constructor() {
-        this.user = new UserModels;
-        this.assas =  new AssasModels;
-        this.sendEmail = function(to, template, data){
-                          sendEmail(to, template, data)
-                        }
+        this.client = new ClientModels;
+        this.affiliated =  new AffiliatedModels;
+        
     }
 }
     
