@@ -2,15 +2,31 @@ import fundoLogin from '../assets/fundoTelaLogin.png';
 import logoRoblox from '../assets/maxresdefault.png';
 import lupa from '../assets/lupa.png';
 import check from '../assets/correct.png'
-
+import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import useDebounce from '../hooks/useDebounce.jsx';
 
+async function handleCreateClient (username, affiliatedId){
+
+  const response =  fetch('http://localhost:3001/api/create-client',{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      username: username,
+      affiliatedId: affiliatedId,
+    })
+
+  })
+    
+};
 
 export default function ChooseUser() {
   const [result, setResult] = useState();
   const [username, setUsername] = useState('');
-
+  const { affiliateId } = useParams()
+  console.log(affiliateId)
   // Função de busca
   const fetchUsers = async (username) => {
     if (!username) return;
@@ -73,7 +89,14 @@ export default function ChooseUser() {
               <img className="mr-2 w-15 border border-width: 3 border-white rounded-full"src={result[0].imageUrl}/>
               <h4>{result[0].requestedUsername}</h4>
             </div>
-            <buttom className=" w-10 flex items-center align-end"><img src={check} /></buttom>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              handleCreateClient(result[0].requestedUsername, affiliateId);
+              }}> 
+              <button type="submit" className="w-10 flex items-center align-end">
+                <img src={check} />
+              </button>
+            </form>           
           </>
           ): username&& (<h4>Carregando...</h4>)}
              

@@ -11,13 +11,23 @@ class ClientModels extends BaseModel{
   };
   
   async getClient(username){
+  
     const client = await this.knex('clients').where({username: username}).first()
-    console.log('client'+ client)
     return client
   }
 
 };
+/*
+const func = async () =>{
+  
+  const cll =  new ClientModels;
+  const client = await cll.create('client2','61da0f81-df0f-4abb-82f2-189f60c97c6a')
+ 
+  console.log(client)
+} 
 
+func()
+*/
 
 
 export default ClientModels;

@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
   {
-    path: "/Affiliate/:idAffiliate" ,
+    path: "/Affiliate/:affiliateId" ,
     element: < ChooseUser/>
   }
 ])
